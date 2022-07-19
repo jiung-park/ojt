@@ -1,4 +1,4 @@
-package com.tmax.ai.dto;
+package com.tmax.ai.dto.response;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

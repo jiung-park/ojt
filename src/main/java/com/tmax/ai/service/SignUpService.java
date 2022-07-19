@@ -1,7 +1,8 @@
 package com.tmax.ai.service;
 
-import com.tmax.ai.dto.SignUpRequestDto;
+import com.tmax.ai.dto.request.SignUpRequestDto;
 import com.tmax.ai.entity.User;
+import com.tmax.ai.exception.DuplicateUsernameException;
 import com.tmax.ai.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,15 +15,10 @@ public class SignUpService {
 
     public void signUp(SignUpRequestDto signUpRequestDto) {
         if (userRepository.existsByUsername(signUpRequestDto.getUsername())) {
-            System.out.println("failed");
-            return;
+            throw new DuplicateUsernameException(); // 중복된 username 예외 처리
         }
-        User user = new User();
-        System.out.println(user);
-        user.setUsername(signUpRequestDto.getUsername());
-        user.setPassword(signUpRequestDto.getPassword());
+        User user = new User(signUpRequestDto.getUsername(), signUpRequestDto.getPassword());
         userRepository.save(user);
-        System.out.println("success");
     }
 
 }

@@ -1,6 +1,6 @@
 package com.tmax.ai.controller;
 
-import com.tmax.ai.dto.LoginRequestDto;
+import com.tmax.ai.dto.request.LoginRequestDto;
 import com.tmax.ai.service.LogInService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
