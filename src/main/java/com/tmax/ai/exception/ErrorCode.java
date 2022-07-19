@@ -1,18 +1,21 @@
 package com.tmax.ai.exception;
 
+import org.springframework.http.HttpStatus;
+
 public enum ErrorCode {
 
-    DUPLICATE_USERNAME(400, "중복된 아이디입니다.");
+    DUPLICATE_USERNAME(HttpStatus.BAD_REQUEST, "중복된 아이디입니다."), // 기존 코드에서는 왜 int 형 인가
+    LOG_IN_FAILED(HttpStatus.BAD_REQUEST, "로그인에 실패하였습니다.");
 
     private final String message;
-    private final int status;
+    private final HttpStatus status;
 
-    ErrorCode(final int status, final String message) {
+    ErrorCode(final HttpStatus status, final String message) {
         this.status = status;
         this.message = message;
     }
 
-    public int getStatus() {
+    public HttpStatus getStatus() {
         return status;
     }
 

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    boolean existsByUsername(String username); // Question 네이밍이 정해져있는것으로 보임
+    boolean existsByUsername(String username);
     User findByUsername(String username);
 
 }

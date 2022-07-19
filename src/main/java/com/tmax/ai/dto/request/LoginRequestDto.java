@@ -1,13 +1,18 @@
 package com.tmax.ai.dto.request;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
-@RequiredArgsConstructor
 public class LoginRequestDto {
 
+    @NotBlank // 공백 및 null 제한
+    @Size(min=1, max=255) // 255자 제한
     private String username;
+    @NotNull
     private String password;
 
 }

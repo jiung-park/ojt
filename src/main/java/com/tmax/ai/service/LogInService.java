@@ -2,6 +2,7 @@ package com.tmax.ai.service;
 
 import com.tmax.ai.dto.request.LoginRequestDto;
 import com.tmax.ai.entity.User;
+import com.tmax.ai.exception.LogInFailedException;
 import com.tmax.ai.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,13 +15,8 @@ public class LogInService {
 
     public void logIn(LoginRequestDto loginRequestDto) {
         User user = userRepository.findByUsername(loginRequestDto.getUsername());
-        if(user.getUsername().equals(loginRequestDto.getUsername()) & user.getPassword().equals(loginRequestDto.getPassword())){
-            System.out.println("log in success");
-            return;
-        }
-        else {
-            System.out.println("log in failed");
+        if (!user.getPassword().equals(loginRequestDto.getPassword())) {
+            throw new LogInFailedException();
         }
     }
-
 }
