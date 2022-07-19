@@ -1,6 +1,6 @@
 package com.tmax.ai.service;
 
-import com.tmax.ai.dto.TestLogRequestDto;
+import com.tmax.ai.dto.request.TestLogRequestDto;
 import com.tmax.ai.entity.Test;
 import com.tmax.ai.repository.TestRepository;
 import lombok.RequiredArgsConstructor;

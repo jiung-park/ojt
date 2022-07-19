@@ -1,6 +1,6 @@
 package com.tmax.ai.controller;
 
-import com.tmax.ai.dto.TestRequestDto;
+import com.tmax.ai.dto.request.TestRequestDto;
 import com.tmax.ai.service.TestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

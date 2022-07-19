@@ -1,6 +1,6 @@
 package com.tmax.ai.service;
 
-import com.tmax.ai.dto.LoginRequestDto;
+import com.tmax.ai.dto.request.LoginRequestDto;
 import com.tmax.ai.entity.User;
 import com.tmax.ai.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
