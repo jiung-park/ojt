@@ -13,4 +13,5 @@ public class DuplicateUsernameException extends CustomException{
     public DuplicateUsernameException() {
         super(ErrorCode.DUPLICATE_USERNAME);
     }
+
 }
