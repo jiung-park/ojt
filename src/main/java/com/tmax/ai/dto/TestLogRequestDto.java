@@ -5,9 +5,8 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class TestRequestDto {
+public class TestLogRequestDto {
 
     private String username;
-    private String formula;
-    
+
 }
