@@ -7,4 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TestResponseDto {
 
+    private String iscorrect;
+    private String correctanswer;
+
 }
