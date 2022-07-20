@@ -22,9 +22,9 @@ public class TestService {
             ScriptEngineManager mgr = new ScriptEngineManager();
             ScriptEngine engine = mgr.getEngineByName("JavaScript");
             String[] expressions = testRequestDto.getFormula().split("=");
-            int left = (int) engine.eval(expressions[0]);
-            int right = (int) engine.eval(expressions[1]); // right은 필요 없을듯
-            boolean isCorrect = left == right;
+            Float left = Float.valueOf(engine.eval(expressions[0]).toString());
+            Float right = Float.valueOf(engine.eval(expressions[1]).toString()); // right은 필요 없을듯
+            boolean isCorrect = left.floatValue() == right.floatValue(); // object 사용으로 문제점 발생
             Test test = new Test(testRequestDto.getUsername(), testRequestDto.getFormula(), isCorrect);
             testRepository.save(test);
 
@@ -33,7 +33,8 @@ public class TestService {
                 testResponseDto = new TestResponseDto(isCorrect, left);
             }
             return testResponseDto;
-        } catch(Exception e) {
+        } catch(Exception e) { // Exception 수정 필요
+            System.out.println(e.toString());
             throw new InvalidFormulaException();
         }
     }
