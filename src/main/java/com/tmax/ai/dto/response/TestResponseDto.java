@@ -12,6 +12,6 @@ public class TestResponseDto {
 
     private Boolean isCorrect;
     @JsonInclude(JsonInclude.Include.NON_NULL) // null인 경우 json 반환시 제거
-    private Integer correctAnswer;
+    private Float correctAnswer;
 
 }
