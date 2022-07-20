@@ -1,6 +1,7 @@
 package com.tmax.ai.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "test")
 public class Test {
 
@@ -20,9 +22,15 @@ public class Test {
     private String username;
 
     @Column
-    private String testlog;
+    private String testLog;
 
     @Column
-    private String iscorrect; //Question Entity 네이밍 규칙
+    private boolean isCorrect;
+
+    public Test(String username, String testLog, boolean isCorrect) {
+        this.username = username;
+        this.testLog = testLog;
+        this.isCorrect = isCorrect;
+    }
 
 }

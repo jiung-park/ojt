@@ -1,7 +1,9 @@
 package com.tmax.ai.service;
 
 import com.tmax.ai.dto.request.TestRequestDto;
+import com.tmax.ai.dto.response.TestResponseDto;
 import com.tmax.ai.entity.Test;
+import com.tmax.ai.exception.InvalidFormulaException;
 import com.tmax.ai.repository.TestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,31 +17,25 @@ public class TestService {
 
     private final TestRepository testRepository;
 
-    public void test(TestRequestDto testRequestDto) throws Exception {
-        ScriptEngineManager mgr = new ScriptEngineManager();
-        ScriptEngine engine = mgr.getEngineByName("JavaScript");
-        String formula = testRequestDto.getFormula();
-        String[] expressions = formula.split("=");
-        int left = (int) engine.eval(expressions[0]);
-        int right = (int) engine.eval(expressions[1]);
-        String iscorrect = "false";
-        if(left == right) {
-            System.out.println("test success");
-            iscorrect = "true";
+    public TestResponseDto test(TestRequestDto testRequestDto) {
+        try {
+            ScriptEngineManager mgr = new ScriptEngineManager();
+            ScriptEngine engine = mgr.getEngineByName("JavaScript");
+            String[] expressions = testRequestDto.getFormula().split("=");
+            int left = (int) engine.eval(expressions[0]);
+            int right = (int) engine.eval(expressions[1]); // right은 필요 없을듯
+            boolean isCorrect = left == right;
+            Test test = new Test(testRequestDto.getUsername(), testRequestDto.getFormula(), isCorrect);
+            testRepository.save(test);
+
+            TestResponseDto testResponseDto = new TestResponseDto(isCorrect, null);
+            if(!isCorrect) {
+                testResponseDto = new TestResponseDto(isCorrect, left);
+            }
+            return testResponseDto;
+        } catch(Exception e) {
+            throw new InvalidFormulaException();
         }
-        else {
-            System.out.println("test failed");
-        }
-
-        // test log 저장
-
-        Test test = new Test();
-
-        test.setUsername(testRequestDto.getUsername()); // Question 두 번 사용되면 미리 변수 받아야 하나
-        test.setTestlog(testRequestDto.getFormula());
-        test.setIscorrect(iscorrect);
-
-        testRepository.save(test);
     }
 
 }
