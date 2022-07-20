@@ -25,9 +25,9 @@ public class Test {
     private String testLog;
 
     @Column
-    private boolean isCorrect;
+    private Boolean isCorrect; // native type 으로 했을 때 에러가 생기는 이유? boolean vs Boolean
 
-    public Test(String username, String testLog, boolean isCorrect) {
+    public Test(String username, String testLog, Boolean isCorrect) {
         this.username = username;
         this.testLog = testLog;
         this.isCorrect = isCorrect;
