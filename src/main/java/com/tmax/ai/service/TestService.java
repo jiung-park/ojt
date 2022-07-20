@@ -34,7 +34,6 @@ public class TestService {
             }
             return testResponseDto;
         } catch(Exception e) { // Exception 수정 필요
-            System.out.println(e.toString());
             throw new InvalidFormulaException();
         }
     }

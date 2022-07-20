@@ -10,9 +10,10 @@ import javax.validation.constraints.Size;
 public class SignUpRequestDto {
 
     @NotBlank // 공백 및 null 제한
-    @Size(min=1, max=255) // 255자 제한
+    @Size(max=255) // 255자 제한
     private String username;
     @NotNull
+    @Size(max=255) // 255자 제한
     private String password;
 
 }
