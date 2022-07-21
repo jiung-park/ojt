@@ -1,7 +1,7 @@
 package com.tmax.ai.controller;
 
-import com.tmax.ai.dto.request.SignUpRequestDto;
-import com.tmax.ai.service.SignUpService;
+import com.tmax.ai.dto.request.LoginRequestDto;
+import com.tmax.ai.service.LogInService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,24 +13,23 @@ import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(MockitoExtension.class) // 사용 이유 알기
-public class SignUpControllerTest {
+@ExtendWith(MockitoExtension.class)
+public class LogInControllerTest {
 
     @Mock
-    private SignUpService signUpService;
+    private LogInService logInService;
 
     @InjectMocks
-    private SignUpController signUpController; // 의존성 주입 필요성 알기
-
+    private LogInController logInController;
 
     @Test
-    @DisplayName("회원 생성 성공")
-    void doSignUp() throws Exception { // throws 사용 이유?
+    @DisplayName("회원 로그인 성공")
+    void doLogIn() throws Exception {
         // given
-        SignUpRequestDto signUpRequestDto = new SignUpRequestDto("1L", "1L");
+        LoginRequestDto loginRequestDto = new LoginRequestDto("1L", "1L");
 
         // when
-        ResponseEntity<Void> response = signUpController.signUp(signUpRequestDto);
+        ResponseEntity response = logInController.logIn(loginRequestDto);
 
         // then
         assertEquals(HttpStatus.OK, response.getStatusCode());
